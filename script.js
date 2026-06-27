@@ -1,12 +1,14 @@
+
+
 const library = [];
 
-function Book(name, author, topic, format, pages, didRead) {
+function Book(title, author, topic, format, pages, didRead) {
 
 
     if (!new.target){
         throw Error("You must use the new operator to call the constructor")
     }
-    this.name = name;
+    this.title = title;
     this.author = author;
     this.topic = topic;
     this.format = format;
@@ -20,7 +22,7 @@ function Book(name, author, topic, format, pages, didRead) {
 
 Book.prototype.getInfo = function(){
       
-    console.log(`Title "${this.name}". Topic "${this.topic}" Number of Pages ${this.pages} \n Who wrote it? "${this.author} Did you read it? ${this.didRead} \n Format: ${this.format}`)
+    console.log(`Title "${this.title}". Topic "${this.topic}" Number of Pages ${this.pages} \n Who wrote it? "${this.author} Did you read it? ${this.didRead} \n Format: ${this.format}`)
 }
 const book1 = new Book("Refactoring UI", "Adam Wathan & Steve Shoger", "modern user interface design","hardcopy", 218, true);
 const book2 = new Book("Practical UI", "Adham Dannaway", "designing intuitive interfaces", "hardcopy", 282, false);
@@ -42,47 +44,59 @@ publicLibrary.appendChild(shelf);
 
 
 function addBookInfo(){
+
+
     for(let i=0;i < library.length;i++){
 
-    let bookCover = document.createElement('div');
-    bookCover.className = 'bookCover';
-    
-    let bookTitle = document.createElement('h2');
-    bookTitle.className = 'bookTitle';
+        let bookCover = document.createElement('div');
+        bookCover.className = 'bookCover';
 
-    let bookAuthor = document.createElement('p');
-    bookAuthor.className = 'bookAuthor';
-
-    let bookTopic = document.createElement('p');
-    bookTopic.className = 'bookTopic';
-
-    let bookFormat = document.createElement('p');
-    bookFormat.className = 'bookFormat';
-
-    let bookPages = document.createElement('p');
-    bookPages.className = 'bookPages';
-
-    let didRead = document.createElement('p');
-    didRead.className = 'didRead';
-
-   
-    
-    shelf.appendChild(bookCover);
-
-    
-
-    bookTitle.textContent=library[i].name;
-    bookAuthor.textContent=library[i].author;
-    bookTopic.textContent=library[i].topic;
-    bookFormat.textContent=library[i].format;
-    bookPages.textContent=library[i].pages;
-    bookCover.append(bookTitle, bookAuthor, bookTopic, bookFormat, bookPages, didRead);
-
-
-
- if (library[i].didRead === true ) {
+        let bookInfo = document.createElement('div');
+        bookInfo.className = "bookInfo";   
         
-            bookCover.style.backgroundColor = "magenta";
+        let bookTitle = document.createElement('h2');
+        bookTitle.className = 'bookTitle';
+
+        let bookAuthor = document.createElement('p');
+        bookAuthor.className = 'bookAuthor';
+
+        let bookTopic = document.createElement('p');
+        bookTopic.className = 'bookTopic';
+
+        let bookFormat = document.createElement('p');
+        bookFormat.className = 'bookFormat';
+
+        let bookPages = document.createElement('p');
+        bookPages.className = 'bookPages';
+
+        let didRead = document.createElement('p');
+        didRead.className = 'didRead';
+
+    
+        
+        shelf.appendChild(bookCover);
+        bookCover.appendChild(bookInfo);
+
+        
+
+        bookTitle.textContent=library[i].title;
+        bookAuthor.textContent=library[i].author;
+        bookTopic.textContent=library[i].topic;
+        bookFormat.textContent=library[i].format;
+        bookPages.textContent=library[i].pages;
+        bookInfo.append(bookTitle, bookAuthor, bookTopic, bookFormat, bookPages, didRead);
+
+    let readTag = document.createElement('div');
+    readTag.className = ('readBook-label');
+
+
+    if (library[i].didRead === true ) {
+            
+                bookCover.style.backgroundColor = "#fb91ff6d";
+                //bookCover.appendChild(readTag);
+                
+
+                
         }
 
 }
@@ -91,9 +105,24 @@ function addBookInfo(){
 
 addBookInfo();
 
+const submitBtn = document.querySelector('#submit-btn');
+submitBtn.addEventListener("click", () => {
+    
+    
+    let newBook = new Book(
+        document.getElementById('title').value,
+        document.getElementById('author').value,
+        document.getElementById('topic').value,
+        document.getElementById('format').value,
+        document.getElementById('pages').value,
+        document.getElementById('didRead').value
+    
 
-const newBook = document.querySelector('.getNewBook')
+    )});
+library.push(newBook);
 
+//const newBook = document.querySelector('.getNewBook')
+/*
 function addBookToLibrary(){
    const inputBook = new Book(
     this.name = function(){
@@ -106,70 +135,14 @@ function addBookToLibrary(){
    
 
 }
+    */
+let bookForm = document.querySelector('#bookForm');
 
 
-const addNewBook = document.querySelector('.newBook');
-addNewBook.addEventListener('click', () => {
-    bookForm();
-    addBookToLibrary();
-
+const addNewBook = document.querySelector('#newBook-btn');
+addNewBook.addEventListener("click", () => {
+    bookForm.style.display = "flex";
+    shelf.appendChild(bookForm);
+    
+    
 })
-/* 
-
-
-
-function populateCardFront(pokemon) {
-    let cardFront = document.createElement('div')
-    cardFront.className = `card-face card-face-front`
-    
-    let frontImage = document.createElement('img')
-    
-    frontImage.src = `../images/pokemon/${getImageFileName(pokemon)}.png`
-    cardFront.appendChild(frontImage)
-    
-    return cardFront
-}
-
-
-
-function populateCardBack(pokemon) {
-    let cardBack = document.createElement('div')
-    cardBack.className = `card-face card-face-back`
-    let pokeLabel = document.createElement('h2')
-    pokeLabel.textContent = pokemon.name
-   
-    let movesLabel = document.createElement('p')
-    movesLabel.textContent = `Moves: ${pokemon.moves.length}`
-    let weightLabel = document.createElement('p')
-    weightLabel.textContent = `Weight: ${pokemon.weight}`
-    
-    let typesList = document.createElement('ul')
-    pokemon.types.forEach(type => {
-        let typeName = document.createElement('li')
-        typeName.textContent = type.type.name
-        typesList.appendChild(typeName)
-    
-   
-
-    cardBack.appendChild(pokeLabel)
-    cardBack.appendChild(movesLabel)
-    cardBack.appendChild(weightLabel)
-    cardBack.appendChild(typesList)
-})
-    return cardBack
-}
-
-
-
-function getImageFileName(pokemon) {
-    if (pokemon.id < 10) {
-        return `00${pokemon.id}`
-    } else if (pokemon.id > 9 && pokemon.id < 100) {
-        return `0${pokemon.id}`
-    } else if (pokemon.id > 99 && pokemon.id < 810) {
-        return `$(pokemon.id)`
-    }
-    return `pokeball`
-}
-
-*/

@@ -20,9 +20,9 @@
         <H1>Web and UI Resource Library</H1>
         <div id="publicLibrary"></div>
         
-        <button id="newBook">Add a Book</button>
-
-        <form action="dialog" method="get" class="getNewBook bookCover">
+        <button id="newBook-btn">Add A New Book</button>
+        <div id="bookForm">
+        <form method="post" class="getNewBook bookCover">
             <label for="title">Book Title
                 <input type="text" name="title" id="title"/></label>
             <label for="author">Author
@@ -35,8 +35,9 @@
                 <input type="number" name="pages" id="pages"/></label>
             <label for="didRead">Did you read it?
                 <input type="checkbox" name="author" id="author"/></label>
-            
+            <input type="submit" id="submit-btn" value= "Add To Shelf" />
         </form>
+        </div>
   </main>
     <footer>
   By Yessi Kenney &hearts; 2026
