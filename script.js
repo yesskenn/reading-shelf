@@ -78,7 +78,9 @@ shelf.innerHTML = "";
         let didRead = document.createElement('p');
         didRead.className = 'didRead';
 
-    
+        let readBtn = document.createElement('input');
+        readBtn.type = "checkbox";
+        readBtn.className = "readBtn";
         
         shelf.appendChild(bookCover);
         bookCover.appendChild(bookInfo);
@@ -90,17 +92,31 @@ shelf.innerHTML = "";
         bookFormat.textContent = bookie.format;
         bookPages.textContent = bookie.pages;
 
-        bookInfo.append(bookTitle, bookAuthor, bookTopic, bookFormat, bookPages, didRead);
+        bookInfo.append(bookTitle, bookAuthor, bookTopic, bookFormat, bookPages, didRead, readBtn);
     
         let readTag = document.createElement('div');
         readTag.className = ('readBook-label');
+        readTag.innerText = "READ";
+        
 
+        readBtn.addEventListener('change', function(){
+            if (this.checked){
+                bookCover.style.backgroundColor = "#fb91ff6d";
+                bookCover.appendChild(readTag); 
+                bookCover.appendChild(readBtn);
+            } else {
+                bookCover.style.backgroundColor = "#fff";
+                bookCover.removeChild(readTag); 
+                readTag.appendChild(readBtn);
+            }
+        })
 
         if (bookie.didRead) {
 
                 bookCover.style.backgroundColor = "#fb91ff6d";
                 bookCover.appendChild(readTag); 
-                readTag.innerText = "READ"
+                readTag.appendChild(readBtn);
+                bookCover.appendChild(readBtn);
 
         }})
     };
