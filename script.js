@@ -43,6 +43,9 @@ const shelf = document.createElement('div');
 shelf.className = 'shelf';
 publicLibrary.appendChild(shelf);
 
+
+
+
 function createNewBook(){}
 function addBookInfo(){
 shelf.innerHTML = "";
@@ -50,13 +53,13 @@ shelf.innerHTML = "";
     library.forEach(bookie => {
 
         bookie.id = crypto.randomUUID();
-       
+    
 
         let bookCover = document.createElement('div');
         bookCover.className = 'bookCover';
         bookCover.dataset.id = bookie.id;
 
-
+    
         let bookInfo = document.createElement('div');
         bookInfo.className = "bookInfo";   
         
@@ -97,6 +100,22 @@ shelf.innerHTML = "";
         let readTag = document.createElement('div');
         readTag.className = ('readBook-label');
         readTag.innerText = "READ";
+        
+        let deleteBtn = document.createElement('button');
+        deleteBtn.className = 'deleteBtn';
+        deleteBtn.innerText = "DELETE ITTT";
+        bookCover.appendChild(deleteBtn);
+
+        deleteBtn.addEventListener("click", function(){
+        bookCover.remove();
+
+        const index = library.indexOf(bookie);
+
+        if (index !== -1){
+        library.splice(index,1);
+        }
+        
+    })
         
 
         readBtn.addEventListener('change', function(){
@@ -162,3 +181,12 @@ submitBtn.addEventListener("click", function(e){
 
 
 
+function removeBook(){
+
+   
+
+    deleteBtn.addEventListener("click", function(){
+        shelf.removeChild(bookCover);
+    })
+
+}
