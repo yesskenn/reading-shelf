@@ -15,19 +15,25 @@
 </head>
 <body>
     <div class="wrapper">
-    <header><nav></nav></header>
+    <header><nav></nav>
+    <H1>Web and UI Resource Library</H1>
+    </header>
     <main>
-        <H1>Web and UI Resource Library</H1>
-        <div id="publicLibrary"></div>
         
+        
+        <div id="sidebar">
         <button id="newBook-btn">Add A New Book</button>
+        </div>
+        <div id="publicLibrary">
+        
+        
         <div id="bookForm">
         <form id="frm" class="getNewBook bookCover">
             <label for="title">Book Title
                 <input type="text" name="title" id="title"/></label>
             <label for="author">Author
                 <input type="text" name="author" id="author"/></label>
-                <label for="topic">Topic
+                <label for="topic">Topic <em>(separate with commas)</em>
                 <input type="text" name="topic" id="topic"/></label>
             <label for="format">Format
                 <input type="text" name="format" id="format"/></label>
@@ -38,6 +44,8 @@
             <input type="submit" id="submit-btn" value= "Add To Shelf" />
         </form>
         </div>
+        </div>
+
   </main>
     <footer>
   By Yessi Kenney &hearts; 2026

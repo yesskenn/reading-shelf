@@ -26,12 +26,12 @@ Book.prototype.getInfo = function(){
       
     console.log(`Title "${this.title}". Topic "${this.topic}" Number of Pages ${this.pages} \n Who wrote it? "${this.author} Did you read it? ${this.didRead} \n Format: ${this.format}`)
 }
-const book1 = new Book("Refactoring UI", "Adam Wathan & Steve Shoger", "modern user interface design","hardcopy", 218, true);
-const book2 = new Book("Practical UI", "Adham Dannaway", "designing intuitive interfaces", "hardcopy", 282, false);
-const book3 = new Book("Better Web Typography for a Better Web", "Matej Latin", "improving web design typography", "digital or hardcopy", 235, false);
-const book4 = new Book("UI Design Systems Mastery", "Marina Budarina", "UI design systems fundamentals", "digital", 300, false);
-const book5 = new Book("The Design Manual", "Adrian Kuleszo", "best practices and UI skills for modern app design", "digital", 770, false);
-const book6 = new Book("Ultimate Guide to Web Design", "Adrian Kuleszo", "web design process for freelancers", "digital", 340, false);
+const book1 = new Book("Refactoring UI", "Adam Wathan & Steve Shoger", "modern design, UI","hardcopy", 218, true);
+const book2 = new Book("Practical UI", "Adham Dannaway", "intuitive, UI", "hardcopy", 282, false);
+const book3 = new Book("Better Web Typography for a Better Web", "Matej Latin", "web design, typography", "digital or hardcopy", 235, false);
+const book4 = new Book("UI Design Systems Mastery", "Marina Budarina", "UI, design systems, fundamentals", "digital", 300, false);
+const book5 = new Book("The Design Manual", "Adrian Kuleszo", "best practices,  UI, modern apps", "digital", 770, false);
+const book6 = new Book("Ultimate Guide to Web Design", "Adrian Kuleszo", "web design, process, freelancers", "digital", 340, false);
 
 
 library.push(book1, book2, book3, book4, book5, book6);
@@ -71,7 +71,7 @@ shelf.innerHTML = "";
 
         let bookTopic = document.createElement('p');
         bookTopic.className = 'bookTopic';
-
+       
         let bookFormat = document.createElement('p');
         bookFormat.className = 'bookFormat';
 
@@ -98,8 +98,12 @@ shelf.innerHTML = "";
         bookFormat.textContent = bookie.format;
         bookPages.textContent = bookie.pages;
 
-        bookInfo.append(bookTitle, bookAuthor, bookTopic, bookFormat, bookPages, didRead);
+        bookInfo.append(bookTitle, bookAuthor, bookFormat, bookPages, bookTopic, didRead);
     
+
+         let tags = bookTopic.textContent.split(",");
+        bookTopic.innerHTML = tags.map(tag => `<span>${tag}</span>`).join(" ");
+
         let readTag = document.createElement('div');
         readTag.className = ('readBook-tag');
 
@@ -157,13 +161,13 @@ addBookInfo();
 
 let bookForm = document.querySelector('#bookForm');
 
-
+const sidebar = document.querySelector('#sidebar');
 const newBookBtn = document.querySelector('#newBook-btn');
 
 
 newBookBtn.addEventListener("click", () => {
     bookForm.style.display = "flex";
-    shelf.appendChild(bookForm);
+    sidebar.appendChild(bookForm);
     document.getElementById('frm').reset();
     
     
