@@ -4,6 +4,21 @@ let library = [];
 let newBook;
 
 
+class Book {
+    constructor(title, author, topic, format, pages, didRead) { 
+        this.title = title;
+        this.author = author;
+        this.topic = topic;
+        this.format = format;
+        this.pages = pages;
+        this.didRead = didRead;
+    }
+    getInfo(){
+      
+    console.log(`Title "${this.title}". Topic "${this.topic}" Number of Pages ${this.pages} \n Who wrote it? "${this.author} Did you read it? ${this.didRead} \n Format: ${this.format}`)
+    }
+}
+/*
 function Book(title, author, topic, format, pages, didRead) {
 
 
@@ -18,20 +33,18 @@ function Book(title, author, topic, format, pages, didRead) {
     this.didRead = didRead;
     
 }
-
+*/
  
 
 
-Book.prototype.getInfo = function(){
-      
-    console.log(`Title "${this.title}". Topic "${this.topic}" Number of Pages ${this.pages} \n Who wrote it? "${this.author} Did you read it? ${this.didRead} \n Format: ${this.format}`)
-}
-const book1 = new Book("Refactoring UI", "Adam Wathan & Steve Shoger", "modern design, UI","hardcopy", 218, true);
-const book2 = new Book("Practical UI", "Adham Dannaway", "intuitive, UI", "hardcopy", 282, false);
-const book3 = new Book("Better Web Typography for a Better Web", "Matej Latin", "web design, typography", "digital or hardcopy", 235, false);
-const book4 = new Book("UI Design Systems Mastery", "Marina Budarina", "UI, design systems, fundamentals", "digital", 300, false);
-const book5 = new Book("The Design Manual", "Adrian Kuleszo", "best practices,  UI, modern apps", "digital", 770, false);
-const book6 = new Book("Ultimate Guide to Web Design", "Adrian Kuleszo", "web design, process, freelancers", "digital", 340, false);
+
+let book1 = new Book("Refactoring UI", "Adam Wathan & Steve Shoger", "modern design, UI","hardcopy", 218, true);
+let book2 = new Book("Practical UI", "Adham Dannaway", "intuitive, UI", "hardcopy", 282, false);
+let book3 = new Book("Better Web Typography for a Better Web", "Matej Latin", "web design, typography", "digital or hardcopy", 235, false);
+let book4 = new Book("UI Design Systems Mastery", "Marina Budarina", "UI, design systems, fundamentals", "digital", 300, false);
+let book5 = new Book("The Design Manual", "Adrian Kuleszo", "best practices,  UI, modern apps", "digital", 770, false);
+let book6 = new Book("Ultimate Guide to Web Design", "Adrian Kuleszo", "web design, process, freelancers", "digital", 340, false);
+book6.getInfo();
 
 
 library.push(book1, book2, book3, book4, book5, book6);
@@ -45,8 +58,6 @@ publicLibrary.appendChild(shelf);
 
 
 
-
-function createNewBook(){}
 function addBookInfo(){
 shelf.innerHTML = "";
     //for(let i=0;i < library.length;i++){
